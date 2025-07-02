@@ -1,0 +1,24 @@
+CREATE TABLE Product(
+  product_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  product_name VARCHAR(50) NOT NULL,
+  product_type VARCHAR(50) NOT NULL,
+  product_stock INTEGER CHECK(product_stock >= 0) DEFAULT 0,
+  product_price DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE Customer(
+  customer_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  age INTEGER CHECK(age >= 0),
+  gender ENUM('male', 'female') NOT NULL
+);
+
+CREATE TABLE Sale(
+  sale_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  customer_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  quantity INTEGER CHECK(quantity >= 0) DEFAULT 0,
+  purchase_date DATE NOT NULL
+  FOREIGN KEY(customer_id) REFERENCES Customer(customer_id),
+  FOREIGN KEY(product_id) REFERENCES Product(product_id)
+);

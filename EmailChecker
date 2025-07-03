@@ -1,0 +1,13 @@
+import re
+
+def email_checker(email):
+    '''
+    It would tell wheter ypur email is valid 
+    or not based on general email formats!
+    '''
+    pattern = r"[\w\.-]+@[\w\.-]+.[\w\.-]+"
+    result = re.match(pattern, email)
+    if result:
+        return f"\"{email}\" is a correct email adress"
+    else:
+        return f"\"{email}\" is incorrect email adress"
